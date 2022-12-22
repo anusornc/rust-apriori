@@ -14,10 +14,10 @@ pub fn apriori(transactions: &Vec<Vec<String>>, min_support: f64) -> Vec<Vec<Str
     // Filter the item counts to get the set of frequent items
     let num_transactions = transactions.len() as f64;
     let frequent_items: HashSet<String> = item_counts
-        .into_iter()
-        .filter(|(_, count)| (*count as f64) / num_transactions >= min_support)
-        .map(|(item, _)| item)
-        .collect();
+    .into_iter()
+    .filter(|(_, count)| (*count as f64) / num_transactions >= min_support)
+    .map(|(item, _)| item.to_string())   // Create a new String value by cloning the original
+    .collect();
 
     // Add the frequent items to the list of frequent item sets
     for item in frequent_items {
